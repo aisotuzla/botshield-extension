@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BotShield Settings</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-group">
+        <img src="icons/icon48.png" alt="BotShield Logo" class="logo-icon">
+        <div>
+          <h1 class="title">BotShield</h1>
+          <div class="subtitle">AI Commenter Integrity Filter</div>
+        </div>
+      </div>
+      <div id="status-badge" class="status-badge status-checking">
+        <span class="status-dot"></span>
+        <span id="status-text">Checking API...</span>
+      </div>
+    </header>
+
+    <!-- Main Settings Form -->
+    <main class="content">
+      <!-- Endpoint Configuration -->
+      <section class="section">
+        <label for="api-url" class="section-title">Backend API Endpoint</label>
+        <div class="input-group">
+          <input 
+            type="url" 
+            id="api-url" 
+            name="apiUrl"
+            placeholder="http://localhost:8000"
+            spellcheck="false"
+            autocomplete="off"
+            required
+          />
+          <button id="save-url-btn" class="btn btn-primary" title="Save API URL">Save</button>
+        </div>
+        <div class="helper-text">Base URL for <code>/assess</code> and <code>/feedback</code> endpoints.</div>
+      </section>
+
+      <!-- Preferences & Toggles -->
+      <section class="section">
+        <div class="section-title">Detection & Display</div>
+
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <span class="toggle-label">Hide HIGH / BOT comments</span>
+            <span class="toggle-desc">Collapse likely automated comments behind a click-to-reveal bar</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="hide-bots-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <span class="toggle-label">Reply Guardian</span>
+            <span class="toggle-desc">Show gentle inline nudge when typing a reply to a flagged bot</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="reply-guardian-toggle" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="toggle-row">
+          <div class="toggle-info">
+            <span class="toggle-label">Enable on Reddit</span>
+            <span class="toggle-desc">Scan subreddits and comment threads (YouTube is active by default)</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="enable-reddit-toggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div class="slider-row">
+          <div class="slider-info">
+            <span class="toggle-label">Scan Debounce Interval</span>
+            <span class="toggle-desc" id="interval-display">Debounce delay: 800ms</span>
+          </div>
+          <input type="range" id="scan-interval-range" min="300" max="2500" step="100" value="800">
+        </div>
+      </section>
+
+      <!-- Cache & System Status -->
+      <section class="section">
+        <div class="section-title">System & Cache Status</div>
+        <div class="status-grid">
+          <div class="stat-card">
+            <div class="stat-value" id="cached-count">0</div>
+            <div class="stat-label">Cached Verdicts (24h)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="last-call-time">Never</div>
+            <div class="stat-label">Last Successful Call</div>
+          </div>
+        </div>
+        <div class="cache-actions">
+          <button id="clear-cache-btn" class="btn btn-secondary">Clear Cached Verdicts</button>
+        </div>
+      </section>
+
+      <!-- Privacy Notice -->
+      <div class="notice-card">
+        <div class="notice-icon">🛡️</div>
+        <div class="notice-text">
+          Verdicts are probabilistic signals, not accusations. False positives happen — use the feedback buttons to improve detection.
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer / Legal Attribution -->
+    <footer class="footer">
+      <div class="attribution">
+        This product includes GeoLite2 data created by MaxMind, available from 
+        <a href="https://www.maxmind.com" target="_blank" rel="noopener noreferrer">https://www.maxmind.com</a>
+      </div>
+      <div id="save-toast" class="toast hidden">Settings saved successfully.</div>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

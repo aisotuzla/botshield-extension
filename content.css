@@ -1,0 +1,373 @@
+/* BotShield - content.css */
+
+:root {
+  --bs-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --bs-green: #16a34a;
+  --bs-green-bg: rgba(22, 163, 74, 0.12);
+  --bs-green-border: rgba(22, 163, 74, 0.35);
+  
+  --bs-amber: #f59e0b;
+  --bs-amber-bg: rgba(245, 158, 11, 0.12);
+  --bs-amber-border: rgba(245, 158, 11, 0.35);
+  
+  --bs-orange: #ea580c;
+  --bs-orange-bg: rgba(234, 88, 12, 0.12);
+  --bs-orange-border: rgba(234, 88, 12, 0.35);
+  
+  --bs-red: #dc2626;
+  --bs-red-bg: rgba(220, 38, 38, 0.12);
+  --bs-red-border: rgba(220, 38, 38, 0.35);
+}
+
+/* Subtle API Unreachable Header Banner */
+#botshield-api-status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 14px;
+  margin: 8px 0;
+  font-family: var(--bs-font-family);
+  font-size: 12px;
+  font-weight: 500;
+  color: #71717a;
+  background: rgba(113, 113, 122, 0.08);
+  border: 1px dashed rgba(113, 113, 122, 0.25);
+  border-radius: 6px;
+  transition: opacity 0.3s ease;
+  z-index: 9999;
+}
+
+/* Inline Verdict Badge */
+.botshield-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  padding: 2px 7px;
+  font-family: var(--bs-font-family);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.3;
+  border-radius: 9999px;
+  cursor: pointer;
+  vertical-align: middle;
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  user-select: none;
+  border-width: 1px;
+  border-style: solid;
+  text-decoration: none !important;
+}
+
+.botshield-badge:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* Badge Color Variations */
+.botshield-badge-human {
+  color: var(--bs-green) !important;
+  background-color: var(--bs-green-bg);
+  border-color: var(--bs-green-border);
+}
+
+.botshield-badge-caution {
+  color: var(--bs-amber) !important;
+  background-color: var(--bs-amber-bg);
+  border-color: var(--bs-amber-border);
+}
+
+.botshield-badge-high {
+  color: var(--bs-orange) !important;
+  background-color: var(--bs-orange-bg);
+  border-color: var(--bs-orange-border);
+}
+
+.botshield-badge-bot {
+  color: var(--bs-red) !important;
+  background-color: var(--bs-red-bg);
+  border-color: var(--bs-red-border);
+}
+
+/* Interactive Details Panel (Popover) */
+.botshield-popover {
+  position: absolute;
+  z-index: 999999;
+  width: 320px;
+  background: #ffffff;
+  color: #18181b;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  padding: 14px;
+  font-family: var(--bs-font-family);
+  font-size: 12px;
+  line-height: 1.4;
+  backdrop-filter: blur(8px);
+  animation: botshield-fade-in 0.18s ease-out;
+}
+
+@media (prefers-color-scheme: dark), [dark] .botshield-popover, html[dark] .botshield-popover {
+  background: #18181b;
+  color: #f4f4f5;
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes botshield-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.botshield-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(125, 125, 125, 0.15);
+}
+
+.botshield-popover-title {
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.botshield-popover-close {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  color: #a1a1aa;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.botshield-popover-close:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.botshield-popover-score {
+  font-size: 11px;
+  font-weight: 600;
+  color: #71717a;
+  margin-bottom: 8px;
+}
+
+.botshield-popover-advisory {
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(125, 125, 125, 0.08);
+  font-size: 12px;
+  margin-bottom: 10px;
+  border-left: 3px solid #6366f1;
+}
+
+.botshield-popover-signals {
+  margin: 8px 0;
+  padding: 0;
+  list-style: none;
+}
+
+.botshield-popover-signals li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 4px;
+  font-size: 11px;
+  color: #52525b;
+}
+
+@media (prefers-color-scheme: dark), [dark] .botshield-popover-signals li {
+  color: #a1a1aa;
+}
+
+.botshield-popover-signals li::before {
+  content: '•';
+  position: absolute;
+  left: 3px;
+  color: #6366f1;
+  font-weight: bold;
+}
+
+.botshield-popover-feedback {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(125, 125, 125, 0.15);
+}
+
+.botshield-feedback-prompt {
+  font-size: 11px;
+  color: #71717a;
+  margin-bottom: 6px;
+}
+
+.botshield-feedback-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.botshield-btn {
+  flex: 1;
+  padding: 5px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.botshield-btn-correct {
+  background: rgba(22, 163, 74, 0.1);
+  color: var(--bs-green);
+  border-color: var(--bs-green-border);
+}
+
+.botshield-btn-correct:hover {
+  background: var(--bs-green);
+  color: #ffffff;
+}
+
+.botshield-btn-wrong {
+  background: rgba(220, 38, 38, 0.1);
+  color: var(--bs-red);
+  border-color: var(--bs-red-border);
+}
+
+.botshield-btn-wrong:hover {
+  background: var(--bs-red);
+  color: #ffffff;
+}
+
+.botshield-feedback-thanks {
+  font-size: 11px;
+  color: var(--bs-green);
+  font-weight: 600;
+  text-align: center;
+  padding: 4px 0;
+}
+
+/* Collapsible bot comments when hideBots setting is enabled */
+.botshield-comment-collapsed > *:not(.botshield-placeholder) {
+  display: none !important;
+}
+
+.botshield-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  margin: 6px 0;
+  border-radius: 6px;
+  background: rgba(234, 88, 12, 0.08);
+  border: 1px dashed rgba(234, 88, 12, 0.3);
+  font-family: var(--bs-font-family);
+  font-size: 12px;
+  color: #71717a;
+}
+
+.botshield-reveal-btn {
+  background: transparent;
+  border: 1px solid rgba(125, 125, 125, 0.3);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 11px;
+  cursor: pointer;
+  color: inherit;
+  font-weight: 500;
+}
+
+.botshield-reveal-btn:hover {
+  background: rgba(125, 125, 125, 0.15);
+}
+
+/* Reply Guardian — Prevents futile arguments before they start */
+.botshield-reply-guardian {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 8px 12px;
+  margin: 6px 0 10px 0;
+  border-radius: 8px;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.14) 0%, rgba(234, 88, 12, 0.1) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.08);
+  font-family: var(--bs-font-family);
+  font-size: 12px;
+  line-height: 1.4;
+  color: #b45309;
+  animation: botshield-slide-down 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 100;
+  user-select: none;
+}
+
+@media (prefers-color-scheme: dark), [dark] .botshield-reply-guardian, html[dark] .botshield-reply-guardian {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.18) 0%, rgba(234, 88, 12, 0.14) 100%);
+  border-color: rgba(245, 158, 11, 0.45);
+  color: #fbbf24;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes botshield-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.botshield-guardian-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.botshield-guardian-icon {
+  font-size: 14px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.botshield-guardian-text {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.botshield-guardian-dismiss {
+  background: transparent;
+  border: none;
+  color: inherit;
+  opacity: 0.65;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: opacity 0.15s, background 0.15s;
+}
+
+.botshield-guardian-dismiss:hover {
+  opacity: 1;
+  background: rgba(0, 0, 0, 0.08);
+}
